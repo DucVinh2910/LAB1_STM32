@@ -1,0 +1,14 @@
+main.c:94:8:clock_01	16	static
+main.c:64:5:main	24	static
+main.c:104:8:clock_11	16	static
+main.c:113:8:clock_21	16	static
+main.c:122:8:clock_31	16	static
+main.c:131:8:clock_41	16	static
+main.c:141:8:clock_02	16	static
+main.c:151:8:clock_12	16	static
+main.c:160:8:clock_22	16	static
+main.c:169:8:clock_32	16	static
+main.c:178:8:clock_42	16	static
+main.c:289:6:SystemClock_Config	72	static
+main.c:325:13:MX_GPIO_Init	32	static
+main.c:375:6:Error_Handler	4	static,ignoring_inline_asm
