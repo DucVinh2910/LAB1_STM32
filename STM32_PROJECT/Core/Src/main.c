@@ -91,34 +91,43 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  	int count = 200;
-	int led_status = 1;
-	while (1)
-	{
-
-	  if(led_status == 1){
+  int led_color = 1;
+  int count = 500;
+  while (1)
+  {
+	  if(led_color == 1){
 		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, RESET);
 		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, SET);
+		  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, SET);
 		  count = count - 1;
 		  if(count <= 0){
-			  led_status = 0;
+			  led_color = 2;
 			  count = 200;
+		  }
+	  }
+	  else if(led_color == 2){
+		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, SET);
+		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, RESET);
+		  count = count - 1;
+		  if(count <= 0){
+			  led_color = 3;
+			  count = 300;
 		  }
 	  }
 	  else{
-		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, RESET);
-		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, SET);
+		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, SET);
+		  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, RESET);
 		  count = count - 1;
 		  if(count <= 0){
-			  led_status = 1;
-			  count = 200;
+			  led_color = 1;
+			  count = 500;
 		  }
 	  }
 	  HAL_Delay(10);
-	  /* USER CODE END WHILE */
+    /* USER CODE END WHILE */
 
-	  /* USER CODE BEGIN 3 */
-	}
+    /* USER CODE BEGIN 3 */
+  }
   /* USER CODE END 3 */
 }
 
@@ -170,10 +179,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_RED_Pin|LED_YELLOW_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LED_RED_Pin|LED_YELLOW_Pin|LED_GREEN_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : LED_RED_Pin LED_YELLOW_Pin */
-  GPIO_InitStruct.Pin = LED_RED_Pin|LED_YELLOW_Pin;
+  /*Configure GPIO pins : LED_RED_Pin LED_YELLOW_Pin LED_GREEN_Pin */
+  GPIO_InitStruct.Pin = LED_RED_Pin|LED_YELLOW_Pin|LED_GREEN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
